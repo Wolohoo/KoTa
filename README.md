@@ -1,0 +1,2 @@
+# KoTa
+Simppeli fysiikkamoottori pelimatematiikkakurssille
