@@ -96,7 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
-    <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Matikka.h" />
     <ClInclude Include="RandomPolygon.h" />
     <ClInclude Include="Renderer.h" />

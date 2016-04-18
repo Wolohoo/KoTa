@@ -69,7 +69,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CollisionCalc.cpp" />
     <ClCompile Include="miancpp.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="SimulationWorld.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CollisionCalc.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="Physics.h" />
+    <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="SimulationWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
