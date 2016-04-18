@@ -95,7 +95,7 @@ void SimulationWorld::resolve(int confIndex)
     RigidBody body = aBodies[m_collidingBodyIndex];
     RigidBody::Configuration &configuration = body.aConfigurations[confIndex];
 
-    glm::vec2 position = configuration.boundingBox.aVertices[m_collidingCornerIndex];
+    glm::vec2 position = configuration.boundingbox.aVertices[m_collidingCornerIndex];
 
     glm::vec2 toCornerPerpendicular = glm::vec2 (-position.y, position.x);
 
@@ -114,7 +114,7 @@ void SimulationWorld::resolve(int confIndex)
     configuration.m_angularVelocity += impulse * body.m_inertia * perpendicularDot;
 
 }
-/*
+
 void SimulationWorld::calculateVertices(int confIndex)
 {
     int counter;
@@ -125,8 +125,15 @@ void SimulationWorld::calculateVertices(int confIndex)
 
         glm::vec2 const position = aBodies[counter].aConfigurations[confIndex].m_position;
 
-        RigidBody::Configuration::boundingBox
+        RigidBody::Configuration::boundingBox &box = aBodies[counter].aConfigurations[confIndex].boundingbox;
+
+        float const Width = aBodies[counter].m_width / 2.f;
+        float const Height = aBodies[counter].m_height / 2.f;
+
+        box.aVertices[0] = position + Rotation * glm::vec2(Width, Height);
+        box.aVertices[1] = position + Rotation * glm::vec2(Width, -Height);
+        box.aVertices[2] = position + Rotation * glm::vec2(-Width, -Height);
+        box.aVertices[3] = position + Rotation * glm::vec2(-Width, Height);
     }
 
 }
-*/
