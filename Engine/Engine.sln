@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{3FA39399-FD80-4F8E-A447-6E71619A7D94}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Grafiikkamoottori", "..\Graphics\Grafiikkamoottori\Grafiikkamoottori.vcxproj", "{D4D5F197-2F91-43CB-A85E-F81F7728E935}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{3FA39399-FD80-4F8E-A447-6E71619A7D94}.Debug|Win32.Build.0 = Debug|Win32
 		{3FA39399-FD80-4F8E-A447-6E71619A7D94}.Release|Win32.ActiveCfg = Release|Win32
 		{3FA39399-FD80-4F8E-A447-6E71619A7D94}.Release|Win32.Build.0 = Release|Win32
+		{D4D5F197-2F91-43CB-A85E-F81F7728E935}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D4D5F197-2F91-43CB-A85E-F81F7728E935}.Debug|Win32.Build.0 = Debug|Win32
+		{D4D5F197-2F91-43CB-A85E-F81F7728E935}.Release|Win32.ActiveCfg = Release|Win32
+		{D4D5F197-2F91-43CB-A85E-F81F7728E935}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
