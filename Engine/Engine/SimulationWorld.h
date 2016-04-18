@@ -18,8 +18,8 @@ public:
 
 
 protected:
-    int m_windowWidth;
-    int m_windowHeight;
+    float m_windowWidth;
+    float m_windowHeight;
     
     enum CollisionStates
     {

@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\NikoTau\Documents\GitHub\KoTa\Engine\Engine\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\VilleKos\Documents\GitHub\KoTa\Engine\Engine\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -57,7 +57,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\NikoTau\Documents\GitHub\KoTa\Engine\Engine\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\VilleKos\Documents\GitHub\KoTa\Engine\Engine\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,7 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CollisionCalc.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="miancpp.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SimulationWorld.cpp" />
