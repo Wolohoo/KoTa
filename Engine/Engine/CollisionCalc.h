@@ -4,8 +4,11 @@
 class CollisionCalc
 {
 public:
-	CollisionCalc();
-	~CollisionCalc();
+    bool checkForCollision();
+
+protected:
+    bool collisionState;
+    bool penetrating;
 };
 
-#endif // !COLLISIONCALC_H
+#endif
