@@ -5,6 +5,10 @@ SimulationWorld::SimulationWorld(float windowWidth, float windowHeight)
 {
     m_windowWidth = windowWidth;
     m_windowHeight = windowHeight;
+    m_sourceConfIndex = 0;
+    m_targetConfIndex = 0;
+
+    float const density = 0.01f;
 }
 
 
@@ -12,7 +16,6 @@ SimulationWorld::~SimulationWorld()
 {
 }
 
-SimulationWorld WORLD(400, 400);
 
 void SimulationWorld::simulate(float deltaTime)
 {
@@ -52,6 +55,15 @@ void SimulationWorld::simulate(float deltaTime)
     }
 }
 
+void SimulationWorld::initBody(RigidBody &body, float BodyDensity, float BodyWidth, float BodyHeigth, float BodyRestitution)
+{
+    float const BodyMass = BodyDensity * BodyWidth * BodyHeigth;
+    body.m_restitution = BodyRestitution;
+
+    body.m_width = BodyWidth;
+    body.m_height = BodyHeigth;
+}
+
 void SimulationWorld::calculateForces(int confIndex)
 {
     int counter;
@@ -87,7 +99,7 @@ void SimulationWorld::integrate(float deltaTime)
 
 SimulationWorld::CollisionStates SimulationWorld::checkForCollision(int confIndex)
 {
-    CollisionState = clear;
+    return CollisionState = clear;
 }
 
 void SimulationWorld::resolve(int confIndex)
@@ -101,7 +113,7 @@ void SimulationWorld::resolve(int confIndex)
 
     glm::vec2 velocity = configuration.m_velocity + configuration.m_angularVelocity * toCornerPerpendicular;
 
-    float impulseNumerator = -(1 + body.restitution) * ((velocity.x*m_collisionNormal.x) + (velocity.y*m_collisionNormal.y));
+    float impulseNumerator = -(1 + body.m_restitution) * ((velocity.x*m_collisionNormal.x) + (velocity.y*m_collisionNormal.y));
 
     float perpendicularDot = ((toCornerPerpendicular.x*m_collisionNormal.x) + (toCornerPerpendicular.y*m_collisionNormal.y));
 

@@ -13,7 +13,6 @@
 #include "Matikka.h"
 #include "RandomPolygon.h"
 #include "vertexshader.h"
-#include "CollisionDetection.h"
 
 namespace Renderer
 {

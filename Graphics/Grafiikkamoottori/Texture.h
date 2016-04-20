@@ -10,7 +10,6 @@
 
 #include <GLFW\glfw3.h>
 #include <SOIL.h>
-#include "CollisionDetection.h"
 GLuint loadImage_custom(const char *image)
 {
 	GLuint textureID;

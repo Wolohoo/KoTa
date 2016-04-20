@@ -3,7 +3,6 @@
 //#include "glm\glm.hpp"
 #ifndef CIRCLE_H
 #define CIRCLE_H
-#include "CollisionDetection.h"
 void DrawCircle()
 {
 	float x1, y1, x2, y2;
@@ -17,7 +16,6 @@ void DrawCircle()
 	glColor3f(1.0, 1.0, 0.6);
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex2f(x1, y1);
-	getPolygonBoudningBox( aabbX1, aabbX2, aabbY1, aabbY2 );
 
 	for (angle = 1.0f; angle<361.0f; angle += 0.2)
 	{

@@ -1,12 +1,10 @@
-#include "CollisionCalc.h"
-#include "Physics.h"
-#include "RigidBody.h"
+
 #include "SimulationWorld.h"
-
-
-#include <iostream>
+#include "Renderer.h"
 int main()
 {
-
+    
+    //SimulationWorld world1(400.f, 400.f);
+    //world1.simulate(1.f);
 
 }

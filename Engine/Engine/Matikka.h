@@ -1,6 +1,5 @@
-#ifndef MATH_H
-#define MATH_H
-#endif // !MATH_H
+#ifndef MATIKKA_H
+#define MATIKKA_H
 
 class Math
 {
@@ -19,3 +18,4 @@ private:
  Math::~ Math()
 {
 }
+#endif // !MATIKKAH_H

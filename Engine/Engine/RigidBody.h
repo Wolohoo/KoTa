@@ -10,8 +10,8 @@ class RigidBody
 {
 public:
     RigidBody(float width, float heigth, float mass, float inertia);
-    RigidBody();
-    ~RigidBody();
+    RigidBody(){};
+    ~RigidBody( void );
 
     //methods
     void setAngVel(glm::vec2 angularVelocity);
@@ -19,14 +19,14 @@ public:
     void setTorque(glm::vec2 torque);
     glm::vec2 getTorque();
     void setOrientation(glm::vec2 orientation);
-    glm::vec2 getOrientation();
+    glm::vec2 getOrientation(glm::vec2 position);
     
 
     //numerals
     float m_width, m_height;
     float m_mass;
     float m_inertia;
-    float restitution;
+    float m_restitution;
 
     enum{numberOfConfigurations = 2};
 
@@ -44,7 +44,7 @@ public:
         {
             glm::vec2 aVertices[4];
 
-        }boundingBox;
+        }boundingbox;
 
     }aConfigurations[numberOfConfigurations];
 };

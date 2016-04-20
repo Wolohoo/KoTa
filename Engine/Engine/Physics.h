@@ -1,5 +1,5 @@
 #include "SimulationWorld.h"
-#include <glm.hpp>
+#include "glm/glm.hpp"
 
 #ifndef PHYSICS_H
 #define PHYSICS_H

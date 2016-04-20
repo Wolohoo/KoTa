@@ -2,10 +2,6 @@
 #define SIMULATIONWORLD_H
 
 #include "RigidBody.h"
-#include "glm/glm.hpp"
-#include <iostream>
-#include <math.h>
-#include <vector>
 
 class SimulationWorld
 {
@@ -14,6 +10,7 @@ public:
 	~SimulationWorld();
    
     void simulate(float deltaTime);
+    void initBody(RigidBody &body, float density, float width, float heigth, float restitution);
     float getTime(void);
 
 
