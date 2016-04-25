@@ -7,10 +7,9 @@ class SimulationWorld
 {
 public:
 	SimulationWorld(float windowWidth,float windowHeight);
-	~SimulationWorld();
+    ~SimulationWorld(){};
    
     void simulate(float deltaTime);
-    void initBody(RigidBody &body, float density, float width, float heigth, float restitution);
     float getTime(void);
 
 
@@ -37,6 +36,20 @@ protected:
     CollisionStates checkForCollision(int confIndex);
     void resolve(int confIndex);
     void calculateVertices(int confIndex);
+
+
+    enum { NumberOfWalls = 5 };
+    struct wall
+    {
+        // define wall by plane equation
+        glm::vec2 Normal;		// inward pointing
+        float c;					// ax + by + c = 0
+
+        // points for drawing wall
+        glm::vec2 StartPoint;
+        glm::vec2 EndPoint;
+    } aWalls[NumberOfWalls];
+
 
     enum { numberOfBodies = 2 };
     RigidBody aBodies[numberOfBodies];

@@ -4,8 +4,7 @@
 
 void RandomPolygon(unsigned int sides)
 {
-
-
+    
 	if (sides < 3) return;
 
 	const float PI = 3.14159f;

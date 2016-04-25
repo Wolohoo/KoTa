@@ -1,19 +1,45 @@
 #include "SimulationWorld.h"
 
+#define WIDTH 400
+#define HEIGHT 400
 
-SimulationWorld::SimulationWorld(float windowWidth, float windowHeight)
+float windowWidth = WIDTH;
+float windowHeight = HEIGHT;
+
+SimulationWorld World(float windowWidth, float windowHeight);
+
+
+void initBody(RigidBody &body, float BodyDensity, float BodyWidth, float BodyHeigth, float BodyRestitution)
 {
-    m_windowWidth = windowWidth;
-    m_windowHeight = windowHeight;
-    m_sourceConfIndex = 0;
-    m_targetConfIndex = 0;
+    body.m_mass = BodyDensity * BodyWidth * BodyHeigth;
+    body.m_restitution = BodyRestitution;
 
-    float const density = 0.01f;
+    body.m_width = BodyWidth;
+    body.m_height = BodyHeigth;
+
+    body.m_inertia = 1 / (body.m_mass / 12) * (BodyWidth * BodyWidth + BodyHeigth * BodyHeigth);
+
+    body.aConfigurations[0].m_orientation = 0;
+    body.aConfigurations[0].m_angularVelocity = 0;
+    body.aConfigurations[0].m_torque = 0;
+
 }
 
-
-SimulationWorld::~SimulationWorld()
+SimulationWorld::SimulationWorld(float windowWidth, float windowHeight) :
+m_windowWidth(windowWidth),
+m_windowHeight(windowHeight),
+m_sourceConfIndex(0),
+m_targetConfIndex(1)
 {
+    float const density = 0.01f;
+
+    initBody(aBodies[0], density, (10.f), (10.f), (10.f));
+    initBody(aBodies[1], density, (10.f), (10.f), (10.f));
+
+    aBodies[0].aConfigurations[0].m_velocity = glm::vec2(40.f, 10.f);
+    aBodies[0].aConfigurations[0].m_angularVelocity = 3.1415f;
+
+    calculateVertices(0);
 }
 
 
@@ -55,18 +81,9 @@ void SimulationWorld::simulate(float deltaTime)
     }
 }
 
-void SimulationWorld::initBody(RigidBody &body, float BodyDensity, float BodyWidth, float BodyHeigth, float BodyRestitution)
-{
-    float const BodyMass = BodyDensity * BodyWidth * BodyHeigth;
-    body.m_restitution = BodyRestitution;
-
-    body.m_width = BodyWidth;
-    body.m_height = BodyHeigth;
-}
-
 void SimulationWorld::calculateForces(int confIndex)
 {
-    int counter;
+    int counter ;
 
     for (counter = 0; counter < numberOfBodies; counter++)
     {
@@ -76,7 +93,8 @@ void SimulationWorld::calculateForces(int confIndex)
 
         configuration.m_torque = 0;
         configuration.m_force = glm::vec2 (0);
-      
+        
+
     }
 }
 
@@ -86,8 +104,8 @@ void SimulationWorld::integrate(float deltaTime)
 
     for (counter = 0; counter < numberOfBodies; counter++)
     {
-        RigidBody::Configuration source;
-        RigidBody::Configuration target;
+        RigidBody::Configuration &source = aBodies[counter].aConfigurations[m_sourceConfIndex];
+        RigidBody::Configuration &target = aBodies[counter].aConfigurations[m_targetConfIndex];
 
         target.m_position = source.m_position + deltaTime * source.m_velocity;
         target.m_orientation = source.m_orientation + deltaTime *source.m_angularVelocity;
@@ -99,11 +117,55 @@ void SimulationWorld::integrate(float deltaTime)
 
 SimulationWorld::CollisionStates SimulationWorld::checkForCollision(int confIndex)
 {
-    return CollisionState = clear;
+    CollisionState == clear;
+    float const depth = 1.0f;
+
+    float const halfWidth = windowWidth / 2;
+    float const halfHeight = windowHeight / 2;
+
+    for (int Body = 0; (Body < numberOfBodies) && (CollisionState == penetrating); Body++)
+    {
+        RigidBody::Configuration &Configuration = aBodies[Body].aConfigurations[confIndex];
+        RigidBody::Configuration::boundingBox &box = Configuration.boundingbox;
+
+        for (int counter = 0; (counter < 4) && (CollisionState == penetrating); counter++)
+        {
+            glm::vec2 Position = box.aVertices[counter];
+            glm::vec2 ToCornerPerpenticular = glm::vec2(Position - Configuration.m_position);
+            glm::vec2 Velocity = Configuration.m_velocity + Configuration.m_angularVelocity * ToCornerPerpenticular;
+
+            for (int WallIndex = 0; (WallIndex < NumberOfWalls) && (CollisionState != penetrating); WallIndex++)
+            {
+                wall &Wall = aWalls[WallIndex];
+
+                float axbyc = float(Wall.Normal.x*Velocity.x + Wall.Normal.y*Velocity.y);
+
+                if (axbyc < -depth)
+                {
+                    CollisionState = penetrating;
+                }
+                else
+                    if (axbyc < depth)
+                    {
+                        float RelativeVelocity = float(Wall.Normal.x*Velocity.x + Wall.Normal.y*Velocity.y);
+                        if (RelativeVelocity < 0)
+                        {
+                            CollisionState = colliding;
+                            m_collisionNormal = Wall.Normal;
+                            m_collidingCornerIndex = counter;
+                            m_collidingBodyIndex = Body;
+                        }
+                    }
+            }
+
+        }
+    }
+    return CollisionState;
 }
 
 void SimulationWorld::resolve(int confIndex)
 {
+    
     RigidBody body = aBodies[m_collidingBodyIndex];
     RigidBody::Configuration &configuration = body.aConfigurations[confIndex];
 

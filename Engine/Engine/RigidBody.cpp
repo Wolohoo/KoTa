@@ -1,7 +1,7 @@
 #include "RigidBody.h"
 
 
-RigidBody::RigidBody(float width, float heigth, float mass, float inertia)
+RigidBody::RigidBody(float width = 0, float heigth = 0, float mass = 0, float inertia = 0)
 {
     m_width = width;
     m_height = heigth;
@@ -13,6 +13,8 @@ RigidBody::RigidBody(float width, float heigth, float mass, float inertia)
 RigidBody::~RigidBody()
 {
 }
+
+
 //
 //void RigidBody::setAngVel(glm::vec2 angularVelocity)
 //{
@@ -33,4 +35,4 @@ RigidBody::~RigidBody()
 //{
 //    return m_position;
 //}
-//
+

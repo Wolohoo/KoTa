@@ -24,11 +24,11 @@ public:
 
     //numerals
     float m_width, m_height;
-    float m_mass;
-    float m_inertia;
-    float m_restitution;
+    float m_mass ;
+    float m_inertia ;
+    float m_restitution ;
 
-    enum{numberOfConfigurations = 2};
+    enum{numberOfConfigurations = 1};
 
     //config
     struct Configuration
